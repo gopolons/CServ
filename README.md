@@ -6,5 +6,5 @@ A simple server for receiving and parsing HTTP requests built with C.
 
 - [x] Accept a connection on a port
 - [x] Move out the receiver functionality into separate module
-- [ ] Add the `--port` flag that will set the port on which the server will run
+- [x] Add the `--port` flag that will set the port on which the server will run
 - [ ] Parse the request

@@ -1,4 +1,12 @@
+#include "ArgumentHandler/ArgumentHandler.h"
 #include "Receiver/Receiver.h"
+#include "globals.h"
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEFAULT_PORT "3490"
+
+char port[] = DEFAULT_PORT;
 
 /*
  * This function is used for listening
@@ -6,12 +14,10 @@
  * their content to the console.
  */
 int listenToIncomingRequests() {
-  char port[] = "3490";
-
   struct addrinfo hints;
   struct addrinfo *serverInfo; // will point to results
 
-  if (getAddressInfo(port, hints, &serverInfo) == -1) {
+  if (getAddressInfo(hints, &serverInfo) == -1) {
     exit(1);
   }
 
@@ -38,4 +44,13 @@ int listenToIncomingRequests() {
   return 0;
 }
 
-int main(int argc, char *argv[]) { listenToIncomingRequests(); }
+int main(int argc, char *argv[]) {
+  enum Operation op = handleArgs(argc, argv);
+
+  if (op == RECEIVE) {
+    listenToIncomingRequests();
+  } else {
+    printHelpInstructions();
+    exit(1);
+  }
+}
