@@ -1,11 +1,18 @@
 #include "Receiver.h"
+#include "../globals.h"
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 int acceptRequest(int socketDescriptor, char *buffer, int bufferSize) {
 
   int listenStatus = 0;
 
-  printf("[LOG] Listening to incoming connections");
+  printf("[LOG] Listening to incoming connections\n");
 
   listen(socketDescriptor, BACKLOG_SIZE);
 
@@ -43,8 +50,7 @@ int acceptRequest(int socketDescriptor, char *buffer, int bufferSize) {
   return receivedBytes;
 }
 
-int getAddressInfo(char port[5], struct addrinfo hints,
-                   struct addrinfo **serverInfo) {
+int getAddressInfo(struct addrinfo hints, struct addrinfo **serverInfo) {
 
   int addressStatus = 0;
 
@@ -109,6 +115,8 @@ int prepareSocket(struct addrinfo *serverInfo) {
            strerror(errno));
     return bindStatus;
   }
+
+  printf("[LOG] Starting socket on port %s\n", port);
 
   return socketDescriptor;
 }

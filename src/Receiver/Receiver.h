@@ -1,14 +1,7 @@
 #ifndef Receiver_h
 #define Receiver_h
 
-#include <errno.h>
 #include <netdb.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <unistd.h>
 
 #define BACKLOG_SIZE 5
 
@@ -34,8 +27,7 @@ int acceptRequest(int socketDescriptor, char *buffer, int bufferSize);
  *
  * Returns 0 on success & -1 on failure.
  */
-int getAddressInfo(char port[5], struct addrinfo hints,
-                   struct addrinfo **serverInfo);
+int getAddressInfo(struct addrinfo hints, struct addrinfo **serverInfo);
 
 /*
  * A function which takes address information and
