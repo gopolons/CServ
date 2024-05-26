@@ -1,5 +1,5 @@
 #include "Receiver.h"
-#include "../globals.h"
+#include "globals.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
