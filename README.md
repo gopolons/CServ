@@ -8,3 +8,4 @@ A simple server for receiving and parsing HTTP requests built with C.
 - [x] Move out the receiver functionality into separate module
 - [x] Add the `--port` flag that will set the port on which the server will run
 - [ ] Parse the request
+- [ ] Implement HTTP 2.0 compliance
